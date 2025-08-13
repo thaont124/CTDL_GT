@@ -1,4 +1,6 @@
-/*1.1 */
+/*1.1 
+ * O(n)
+*/
 
 import java.util.Scanner;
 

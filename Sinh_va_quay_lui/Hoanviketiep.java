@@ -1,4 +1,6 @@
-/*1.3 */
+/*1.3 
+ O(n)
+*/
 
 import java.util.Scanner;
 
@@ -33,21 +35,23 @@ public class Hoanviketiep {
         } else {
             int j = len - 1;
 
-            while (j > i) {
-                int min_idx = j;
-
-                for (int k = i + 1; k < len; k++) {
-                    if (x[k] < x[min_idx]) {
-                        min_idx = k;
-                    }
-                }
-                int temp = x[i];
-                x[i] = x[min_idx];
-                x[min_idx] = temp;
-
-                i++;
+            while (x[j] < x[i]) {
+                j--;
             }
+            int temp = x[i];
+            x[i] = x[j];
+            x[j] = temp;
 
+            int k = i + 1;
+            int l = len - 1;
+            while (k < l) {
+                temp = x[k];
+                x[k] = x[l];
+                x[l] = temp;
+
+                k++;
+                l--;
+            }
         }
 
         return x;
