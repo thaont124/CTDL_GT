@@ -1,6 +1,6 @@
 
 /*1.4 
- * O(2^n)
+ * O(2^n*n)
 */
 import java.util.Scanner;
 
@@ -20,6 +20,7 @@ public class XauABDoDaiN {
                 s = sinh(s, n);
             }
             System.out.println();
+
         }
     }
 
@@ -34,6 +35,7 @@ public class XauABDoDaiN {
                 i--;
             }
         }
+
         return s;
     }
 }

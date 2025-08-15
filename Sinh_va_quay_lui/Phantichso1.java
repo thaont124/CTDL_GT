@@ -1,9 +1,8 @@
 
 /*1.6 
- * O(2^n)
+ * O(n^2)
 */
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -14,48 +13,39 @@ public class Phantichso1 {
             while (test-- > 0) {
                 int n = scanner.nextInt();
 
-                List<List<Integer>> results = analyze(n);
-                for (List<Integer> result : results) {
-                    System.out.println(result.toString());
+                List<Integer> list = new ArrayList<>();
+                list.add(n);
+                while (list != null) {
+                    System.out.println(list.toString());
+                    list = sinh(n, list);
+
                 }
             }
         }
     }
 
-    private static List<List<Integer>> analyze(int n) {
-        List<List<Integer>> results = new ArrayList<>();
-        List<Integer> list = Arrays.asList(n);
-
-        while (list.size() < n) {
-            results.add(list);
-            list = sinh(n, list);
-        }
-        results.add(list);
-        return results;
-    }
-
     private static List<Integer> sinh(int n, List<Integer> list) {
-        list = new ArrayList<>(list);
-        int i = list.size() - 1;
-        int sum = n;
-        while (list.get(i) == 1) {
-            sum -= list.get(i);
-            list.remove(i);
-            i--;
+        int need = 0;
+        while (!list.isEmpty() && list.getLast() == 1) {
+            list.removeLast();
+            need++;
         }
-        list.set(i, list.get(list.size() - 1) - 1);
-        sum--;
-        int need = n - sum;
-        int k = list.get(list.size() - 1);
+        if (need == n) {
+            return null;
+        }
+        list.set(list.size() - 1, list.getLast() - 1);
+        need++;
+
+        int last = list.getLast();
         while (need > 0) {
-            if (need - k < 0) {
-                k--;
+            if (need - last >= 0) {
+                list.add(last);
+                need -= last;
             } else {
-                list.add(k);
-                need -= k;
+                last--;
             }
         }
-
         return list;
+
     }
 }
