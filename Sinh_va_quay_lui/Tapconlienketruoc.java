@@ -24,11 +24,6 @@ public class Tapconlienketruoc {
         }
     }
 
-    /*
-     * 1 2 3
-     * 1 2 4
-     * 2 3
-     */
     public static int[] sinh(int n, int k, int[] x) {
         int i = k - 1;
         while (x[i] - 1 <= x[i - 1]) {
